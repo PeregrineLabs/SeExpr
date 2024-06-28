@@ -87,6 +87,12 @@ if (Qt5_FOUND OR Qt6_FOUND)
     target_link_libraries(SeExpr2Editor Qt::Gui)
     target_link_libraries(SeExpr2Editor Qt::Widgets)
     target_link_libraries(SeExpr2Editor Qt::OpenGL)
+    target_link_libraries(SeExpr2Editor Qt::OpenGLWidgets)
+
+    if(Qt6_FOUND)
+        message("Adding Qt5 Compatibility libs")
+        target_link_libraries(SeExpr2Editor Qt6::Core5Compat)
+    endif()
 
     target_link_libraries(SeExpr2Editor ${OPENGL_LIBRARY})
     target_link_libraries(SeExpr2Editor ${GLUT_LIBRARY})

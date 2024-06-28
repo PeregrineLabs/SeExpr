@@ -216,7 +216,7 @@ void CCurveScene::emitCurveChanged() { emit curveChanged(); }
 QPixmap &CCurveScene::getPixmap() {
     if (_pixmapDirty) {
         QByteArray buf;
-        buf.append(QString("P6\n%1 %2\n255\n").arg(_width).arg(_height));
+        buf.append(QString("P6\n%1 %2\n255\n").arg(_width).arg(_height).toUtf8());
         buf.append(getCPixmap());
         _pixmap.loadFromData(buf, "PPM");
         _pixmapDirty = false;
@@ -348,19 +348,19 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     Q_UNUSED(iLabel);
     QHBoxLayout *mainLayout = new QHBoxLayout();
     mainLayout->setSpacing(2);
-    mainLayout->setMargin(5);
+    mainLayout->setContentsMargins(5,5,5,5);
 
     QWidget *edits = new QWidget;
     QVBoxLayout *editsLayout = new QVBoxLayout;
     editsLayout->setAlignment(Qt::AlignTop);
     editsLayout->setSpacing(0);
-    editsLayout->setMargin(0);
+    editsLayout->setContentsMargins(0,0,0,0);
     edits->setLayout(editsLayout);
 
     QWidget *selPos = new QWidget;
     QHBoxLayout *selPosLayout = new QHBoxLayout;
     selPosLayout->setSpacing(1);
-    selPosLayout->setMargin(1);
+    selPosLayout->setContentsMargins(1,1,1,1);
     selPos->setLayout(selPosLayout);
     _selPosEdit = new QLineEdit;
     QDoubleValidator *posValidator = new QDoubleValidator(0.0, 1.0, 6, _selPosEdit);
@@ -380,7 +380,7 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     QWidget *selVal = new QWidget;
     QBoxLayout *selValLayout = new QHBoxLayout;
     selValLayout->setSpacing(1);
-    selValLayout->setMargin(1);
+    selValLayout->setContentsMargins(1,1,1,1);
     selVal->setLayout(selValLayout);
     _selValEdit = new ExprCSwatchFrame(SeExpr2::Vec3d(.5));
     _selValEdit->setFixedWidth(38);
@@ -414,7 +414,7 @@ ExprColorCurve::ExprColorCurve(QWidget *parent, QString pLabel, QString vLabel, 
     curveFrame->setFrameShadow(QFrame::Sunken);
     curveFrame->setLineWidth(1);
     QHBoxLayout *curveFrameLayout = new QHBoxLayout;
-    curveFrameLayout->setMargin(0);
+    curveFrameLayout->setContentsMargins(0,0,0,0);
     CurveGraphicsView *curveView = new CurveGraphicsView;
     curveView->setFrameShape(QFrame::Panel);
     curveView->setFrameShadow(QFrame::Sunken);

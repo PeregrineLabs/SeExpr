@@ -168,21 +168,21 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
       _directionalReflectionDampingEdit(0), _sharpenEdit(0) {
     QHBoxLayout *mainLayout = new QHBoxLayout();
     mainLayout->setSpacing(2);
-    mainLayout->setMargin(4);
+    mainLayout->setContentsMargins(4,4,4,4);
 
     QWidget *edits = new QWidget;
     QVBoxLayout *editsLayout = new QVBoxLayout;
     editsLayout->setAlignment(Qt::AlignTop);
     editsLayout->setSpacing(0);
-    editsLayout->setMargin(0);
+    editsLayout->setContentsMargins(0,0,0,0);
     edits->setLayout(editsLayout);
 
-    int editWidth = QFontMetrics(font()).width("[0,0,0]") + 8;
+    int editWidth = QFontMetrics(font()).horizontalAdvance("[0,0,0]") + 8;
 
     QWidget *resolution = new QWidget;
     QHBoxLayout *resolutionLayout = new QHBoxLayout;
     resolutionLayout->setSpacing(1);
-    resolutionLayout->setMargin(1);
+    resolutionLayout->setContentsMargins(1,1,1,1);
     resolution->setLayout(resolutionLayout);
     _resolutionEdit = new DeepWaterLineEdit;
     _resolutionEdit->setFixedWidth(editWidth);
@@ -199,7 +199,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     QWidget *tileSize = new QWidget;
     QHBoxLayout *tileSizeLayout = new QHBoxLayout;
     tileSizeLayout->setSpacing(1);
-    tileSizeLayout->setMargin(1);
+    tileSizeLayout->setContentsMargins(1,1,1,1);
     tileSize->setLayout(tileSizeLayout);
     _tileSizeEdit = new DeepWaterLineEdit;
     _tileSizeEdit->setFixedWidth(editWidth);
@@ -213,7 +213,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     QWidget *lengthCutoff = new QWidget;
     QHBoxLayout *lengthCutoffLayout = new QHBoxLayout;
     lengthCutoffLayout->setSpacing(1);
-    lengthCutoffLayout->setMargin(1);
+    lengthCutoffLayout->setContentsMargins(1,1,1,1);
     lengthCutoff->setLayout(lengthCutoffLayout);
     _lengthCutoffEdit = new DeepWaterLineEdit;
     _lengthCutoffEdit->setFixedWidth(editWidth);
@@ -227,7 +227,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     QWidget *amplitude = new QWidget;
     QHBoxLayout *amplitudeLayout = new QHBoxLayout;
     amplitudeLayout->setSpacing(1);
-    amplitudeLayout->setMargin(1);
+    amplitudeLayout->setContentsMargins(1,1,1,1);
     amplitude->setLayout(amplitudeLayout);
     _amplitudeEdit = new DeepWaterLineEdit;
     _amplitudeEdit->setFixedWidth(editWidth);
@@ -241,7 +241,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     QWidget *windAngle = new QWidget;
     QHBoxLayout *windAngleLayout = new QHBoxLayout;
     windAngleLayout->setSpacing(1);
-    windAngleLayout->setMargin(1);
+    windAngleLayout->setContentsMargins(1,1,1,1);
     windAngle->setLayout(windAngleLayout);
     _windAngleEdit = new DeepWaterLineEdit;
     _windAngleEdit->setFixedWidth(editWidth);
@@ -255,7 +255,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     QWidget *windSpeed = new QWidget;
     QHBoxLayout *windSpeedLayout = new QHBoxLayout;
     windSpeedLayout->setSpacing(1);
-    windSpeedLayout->setMargin(1);
+    windSpeedLayout->setContentsMargins(1,1,1,1);
     windSpeed->setLayout(windSpeedLayout);
     _windSpeedEdit = new DeepWaterLineEdit;
     _windSpeedEdit->setFixedWidth(editWidth);
@@ -269,7 +269,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     QWidget *directionalFactorExponent = new QWidget;
     QHBoxLayout *directionalFactorExponentLayout = new QHBoxLayout;
     directionalFactorExponentLayout->setSpacing(1);
-    directionalFactorExponentLayout->setMargin(1);
+    directionalFactorExponentLayout->setContentsMargins(1,1,1,1);
     directionalFactorExponent->setLayout(directionalFactorExponentLayout);
     _directionalFactorExponentEdit = new DeepWaterLineEdit;
     _directionalFactorExponentEdit->setFixedWidth(editWidth);
@@ -283,7 +283,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     QWidget *directionalReflectionDamping = new QWidget;
     QHBoxLayout *directionalReflectionDampingLayout = new QHBoxLayout;
     directionalReflectionDampingLayout->setSpacing(1);
-    directionalReflectionDampingLayout->setMargin(1);
+    directionalReflectionDampingLayout->setContentsMargins(1,1,1,1);
     directionalReflectionDamping->setLayout(directionalReflectionDampingLayout);
     _directionalReflectionDampingEdit = new DeepWaterLineEdit;
     _directionalReflectionDampingEdit->setFixedWidth(editWidth);
@@ -297,7 +297,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     QWidget *flowDirection = new QWidget;
     QHBoxLayout *flowDirectionLayout = new QHBoxLayout;
     flowDirectionLayout->setSpacing(1);
-    flowDirectionLayout->setMargin(1);
+    flowDirectionLayout->setContentsMargins(1,1,1,1);
     flowDirection->setLayout(flowDirectionLayout);
     _flowDirectionEdit = new DeepWaterLineEdit;
     _flowDirectionEdit->setFixedWidth(editWidth);
@@ -311,7 +311,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     QWidget *sharpen = new QWidget;
     QHBoxLayout *sharpenLayout = new QHBoxLayout;
     sharpenLayout->setSpacing(1);
-    sharpenLayout->setMargin(1);
+    sharpenLayout->setContentsMargins(1,1,1,1);
     sharpen->setLayout(sharpenLayout);
     _sharpenEdit = new DeepWaterLineEdit;
     _sharpenEdit->setFixedWidth(editWidth);
@@ -327,7 +327,7 @@ ExprDeepWater::ExprDeepWater(QWidget *parent)
     curveFrame->setFrameShadow(QFrame::Sunken);
     curveFrame->setLineWidth(1);
     QHBoxLayout *curveFrameLayout = new QHBoxLayout;
-    curveFrameLayout->setMargin(0);
+    curveFrameLayout->setContentsMargins(0,0,0,0);
     DeepWaterGraphicsView *curveView = new DeepWaterGraphicsView;
     curveView->setFrameShape(QFrame::Panel);
     curveView->setFrameShadow(QFrame::Sunken);

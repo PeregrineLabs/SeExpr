@@ -31,12 +31,12 @@ ExprGrapherWidget::ExprGrapherWidget(QWidget* parent, int width, int height)
     Q_UNUSED(parent);
     setFixedSize(width, height + 30);
     QVBoxLayout* vbox = new QVBoxLayout;
-    vbox->setMargin(0);
+    vbox->setContentsMargins(0,0,0,0);
     setLayout(vbox);
     vbox->addWidget(view, 0, Qt::AlignLeft | Qt::AlignTop);
     QHBoxLayout* hbox = new QHBoxLayout;
     vbox->addLayout(hbox);
-    hbox->setMargin(0);
+    hbox->setContentsMargins(0,0,0,0);
 
     float xmin, xmax, ymin, ymax, z;
     view->getWindow(xmin, xmax, ymin, ymax, z);
@@ -85,7 +85,7 @@ void ExprGrapherWidget::update() {
 void ExprGrapherWidget::forwardPreview() { emit preview(); }
 
 ExprGrapherView::ExprGrapherView(ExprGrapherWidget& widget, QWidget* parent, int width, int height)
-    : QGLWidget(parent), widget(widget), _image(NULL), _width(width), _height(height), scaling(false),
+    : QOpenGLWidget(parent), widget(widget), _image(NULL), _width(width), _height(height), scaling(false),
       translating(false) {
     this->setFixedSize(width, height);
 
@@ -129,7 +129,7 @@ void ExprGrapherView::clear() {
 }
 
 void ExprGrapherView::mousePressEvent(QMouseEvent* event) {
-    if (event->button() == Qt::MidButton) {
+    if (event->button() == Qt::MiddleButton) {
         setCursor(Qt::ClosedHandCursor);
         translating = true;
     }
@@ -179,7 +179,7 @@ void ExprGrapherView::update() {
 
     if (!widget.expr.isValid()) {
         clear();
-        updateGL();
+        update();
         return;
     }
 
@@ -204,7 +204,7 @@ void ExprGrapherView::update() {
         }
     }
 
-    updateGL();
+    update();
 }
 
 void ExprGrapherView::paintGL() {

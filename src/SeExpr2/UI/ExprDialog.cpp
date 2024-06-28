@@ -35,7 +35,7 @@
 ExprDialog::ExprDialog(QWidget* parent) : QDialog(parent), _currentEditorIdx(0) {
     this->setMinimumWidth(600);
     QVBoxLayout* rootLayout = new QVBoxLayout(0);
-    rootLayout->setMargin(2);
+    rootLayout->setContentsMargins(2,2,2,2);
     this->setLayout(rootLayout);
 
     showEditorTimer = new QTimer();
@@ -55,14 +55,14 @@ ExprDialog::ExprDialog(QWidget* parent) : QDialog(parent), _currentEditorIdx(0) 
     QWidget* bottomWidget = new QWidget();
     vsplitter->addWidget(bottomWidget);
     QVBoxLayout* bottomLayout = new QVBoxLayout();
-    bottomLayout->setMargin(1);
+    bottomLayout->setContentsMargins(1,1,1,1);
     bottomWidget->setLayout(bottomLayout);
 
     // setup preview
     QWidget* leftWidget = new QWidget();
     leftWidget->setFixedWidth(450);
     QVBoxLayout* leftLayout = new QVBoxLayout();
-    leftLayout->setMargin(0);
+    leftLayout->setContentsMargins(0,0,0,0);
     leftWidget->setLayout(leftLayout);
     QHBoxLayout* previewLayout = new QHBoxLayout();
     grapher = new ExprGrapherWidget(this, 200, 200);
@@ -76,7 +76,7 @@ ExprDialog::ExprDialog(QWidget* parent) : QDialog(parent), _currentEditorIdx(0) 
     // QWidget* buttonBarWidget=new QWidget();
     QHBoxLayout* buttonBarLayout = new QHBoxLayout();
     // buttonBarWidget->setLayout(buttonBarLayout);
-    buttonBarLayout->setMargin(1);
+    buttonBarLayout->setContentsMargins(1,1,1,1);
     previewButton = new QPushButton("Preview");
     buttonBarLayout->addWidget(previewButton);
     saveButton = new QPushButton("Save");
@@ -272,7 +272,7 @@ void ExprDialog::findHelper(QTextDocument::FindFlags flags) {
     helpBrowser->setTextCursor(blah);
 }
 
-void ExprDialog::findNextInHelp() { findHelper(0); }
+void ExprDialog::findNextInHelp() { findHelper(QFlags<QTextDocument::FindFlag>()); }
 
 void ExprDialog::findPrevInHelp() { findHelper(QTextDocument::FindBackward); }
 

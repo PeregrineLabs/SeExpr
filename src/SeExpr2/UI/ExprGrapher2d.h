@@ -23,7 +23,7 @@
 
 #include <QObject>
 #include <QPalette>
-#include <QGLWidget>
+#include <QOpenGLWidget>
 #include <QMouseEvent>
 
 #include "BasicExpression.h"
@@ -31,7 +31,7 @@
 class ExprGrapherWidget;
 class QLineEdit;
 
-class ExprGrapherView : public QGLWidget {
+class ExprGrapherView : public QOpenGLWidget {
     Q_OBJECT;
     ExprGrapherWidget& widget;
 

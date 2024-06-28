@@ -104,7 +104,7 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
 
     // make layout
     QVBoxLayout* exprAndErrors = new QVBoxLayout;
-    exprAndErrors->setMargin(0);
+    exprAndErrors->setContentsMargins(0,0,0,0);
     setLayout(exprAndErrors);
 
     // create text editor widget
@@ -113,8 +113,8 @@ ExprEditor::ExprEditor(QWidget* parent, ExprControlCollection* controls)
 
     // calibrate the font size
     int fontsize = 12;
-    while (QFontMetrics(QFont("Liberation Sans", fontsize)).width("abcdef") < 38 && fontsize < 20) fontsize++;
-    while (QFontMetrics(QFont("Liberation Sans", fontsize)).width("abcdef") > 44 && fontsize > 3) fontsize--;
+    while (QFontMetrics(QFont("Liberation Sans", fontsize)).horizontalAdvance("abcdef") < 38 && fontsize < 20) fontsize++;
+    while (QFontMetrics(QFont("Liberation Sans", fontsize)).horizontalAdvance("abcdef") > 44 && fontsize > 3) fontsize--;
 
     exprTe->setFont(QFont("Liberation Sans", fontsize));
 
@@ -231,9 +231,9 @@ void ExprTextEdit::paintEvent(QPaintEvent* event) {
 
 void ExprTextEdit::wheelEvent(QWheelEvent* event) {
     if (event->modifiers() == Qt::ControlModifier) {
-        if (event->delta() > 0)
+        if (event->angleDelta().y() > 0)
             zoomIn();
-        else if (event->delta() < 0)
+        else if (event->angleDelta().y() < 0)
             zoomOut();
     }
     return QTextEdit::wheelEvent(event);

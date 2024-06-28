@@ -40,7 +40,7 @@
 ExprControlCollection::ExprControlCollection(QWidget* parent, bool showAddButton)
     : QWidget(parent), count(0), showAddButton(showAddButton), editableExpression(0) {
     controlLayout = new QVBoxLayout();
-    controlLayout->setMargin(0);
+    controlLayout->setContentsMargins(0,0,0,0);
     controlLayout->setSpacing(0);
     controlLayout->insertStretch(-1, 100);
 
@@ -62,7 +62,7 @@ ExprAddDialog::ExprAddDialog(int& count, QWidget* parent) : QDialog(parent) {
     QVBoxLayout* verticalLayout;
     verticalLayout = new QVBoxLayout();
     verticalLayout->setSpacing(3);
-    verticalLayout->setMargin(3);
+    verticalLayout->setContentsMargins(3,3,3,3);
     setLayout(verticalLayout);
     QHBoxLayout* horizontalLayout = new QHBoxLayout();
 

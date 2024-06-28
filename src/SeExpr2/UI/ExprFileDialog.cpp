@@ -24,6 +24,7 @@
 #include <QMenu>
 #include <QTimer>
 #include <QUrl>
+#include <QRegExp>
 #include <iostream>
 
 using std::max;
@@ -67,7 +68,7 @@ ExprPreviewWidget::ExprPreviewWidget(QWidget* parent) : QWidget(parent) {
     _pm->setAutoFillBackground(true);
     QVBoxLayout* layout = new QVBoxLayout;
     layout->setSpacing(0);
-    layout->setMargin(0);
+    layout->setContentsMargins(0,0,0,0);
     layout->addWidget(_pm);
     setLayout(layout);
 }
@@ -80,7 +81,7 @@ ExprFileDialog::ExprFileDialog(QWidget* parent) : QFileDialog(parent) {
     _okButton = 0;
 
     // disconnect broken return press handling (mishandles new directory names)
-    QList<QLineEdit*> lineedits = findChildren<QLineEdit*>(QRegExp());
+    QList<QLineEdit*> lineedits = findChildren<QLineEdit*>();
     if (lineedits.size()) _nameEdit = (QLineEdit*)lineedits.at(0);
     if (_nameEdit) {
         _nameEdit->disconnect(SIGNAL(returnPressed()));
@@ -88,7 +89,7 @@ ExprFileDialog::ExprFileDialog(QWidget* parent) : QFileDialog(parent) {
     }
 
     // connect custom ok clicked handler
-    QList<QPushButton*> myWidgets = findChildren<QPushButton*>(QRegExp());
+    QList<QPushButton*> myWidgets = findChildren<QPushButton*>();
     for (int w = 0; w < myWidgets.size(); w++) {
         QPushButton* item = (QPushButton*)myWidgets.at(w);
         if (item->text().contains("Open")) _okButton = item;
@@ -111,7 +112,7 @@ ExprFileDialog::ExprFileDialog(QWidget* parent) : QFileDialog(parent) {
 }
 
 void ExprFileDialog::handleOk() {
-    if (fileMode() != QFileDialog::DirectoryOnly) return;
+    if (fileMode() != QFileDialog::Directory) return;
     QString entry = _nameEdit->text();
     if (entry == "") return;
 
@@ -156,7 +157,7 @@ void ExprFileDialog::editReturnPress() {
 
             if (d.cd(str)) setDirectory(str);
         }
-    } else if (fileMode() == QFileDialog::DirectoryOnly)
+    } else if (fileMode() == QFileDialog::Directory)
         handleOk();
     else
         accept();
@@ -279,7 +280,7 @@ QString ExprFileDialog::getExistingDirectory(const QString& caption, const QStri
 
     if (!startWith.isEmpty()) setDirectory(startWith);
     if (!caption.isNull()) setWindowTitle(caption);
-    setFileMode(QFileDialog::DirectoryOnly);
+    setFileMode(QFileDialog::Directory);
     selectFile("");
 
     QString result;

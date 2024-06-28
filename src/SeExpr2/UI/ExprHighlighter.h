@@ -22,11 +22,14 @@
 #define _ExprHighlighter_h_
 #include <QSyntaxHighlighter>
 #include <QPalette>
+#include <QRegularExpression>
+#include <QRegularExpressionMatch>
+#include <QRegularExpressionMatchIterator>
 #include <iostream>
 
 class ExprHighlighter : public QSyntaxHighlighter {
     struct HighlightingRule {
-        QRegExp pattern;
+        QRegularExpression pattern;
         QTextCharFormat format;
     };
     QVector<HighlightingRule> highlightingRules;
@@ -62,31 +65,39 @@ class ExprHighlighter : public QSyntaxHighlighter {
         //}
 
         numberFormat.setForeground(QColor::fromHsv(180, 204, lightness));
-        rule.pattern = QRegExp("\\b[0-9]*\\.[0-9]*)?|[0-9]+\\b");  // \\b?[^\\$][A-Za-z][A-Za-z0-9]*\\b");
+        rule.pattern = QRegularExpression("\\b[0-9]*\\.[0-9]*)?|[0-9]+\\b");  // \\b?[^\\$][A-Za-z][A-Za-z0-9]*\\b");
         rule.format = numberFormat;
         // highlightingRules.append(rule);
 
         variableFormat.setForeground(QColor::fromHsv(200, 153, lightness));
         // variableFormat.setFontWeight(QFont::Bold);
-        rule.pattern = QRegExp("\\$[A-Za-z][A-Za-z0-9]*\\b");
+        rule.pattern = QRegularExpression("\\$[A-Za-z][A-Za-z0-9]*\\b");
         rule.format = variableFormat;
         highlightingRules.append(rule);
 
         singleLineCommentFormat.setForeground(QColor::fromHsv(210, 128, lightness));
-        rule.pattern = QRegExp("#[^\n]*");
+        rule.pattern = QRegularExpression("#[^\n]*");
         rule.format = singleLineCommentFormat;
         highlightingRules.append(rule);
     }
 
     void highlightBlock(const QString& text) {
         foreach(HighlightingRule rule, highlightingRules) {
-            QRegExp expression(rule.pattern);
-            int index = text.indexOf(expression);
+            QRegularExpression expression(rule.pattern);
+
+            QRegularExpressionMatchIterator exprIter = expression.globalMatch(text);
+            while (exprIter.hasNext())
+            {
+                QRegularExpressionMatch match = exprIter.next();
+                setFormat(match.capturedStart(), match.capturedLength(), rule.format);
+            }
+
+            /*int index = text.indexOf(expression);
             while (index >= 0) {
                 int length = expression.matchedLength();
                 setFormat(index, length, rule.format);
                 index = text.indexOf(expression, index + length);
-            }
+            }*/
         }
         setCurrentBlockState(0);
     }

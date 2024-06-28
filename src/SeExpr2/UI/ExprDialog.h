@@ -23,7 +23,6 @@
 
 #include <QObject>
 #include <QMessageBox>
-#include <QGLWidget>
 #include <QHBoxLayout>
 #include <QSplitter>
 #include <QPalette>

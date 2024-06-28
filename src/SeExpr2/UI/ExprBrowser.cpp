@@ -33,6 +33,7 @@
 #include <QSortFilterProxyModel>
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QRegExp>
 
 #include <cassert>
 #include "ExprEditor.h"
@@ -224,10 +225,10 @@ class ExprTreeFilterModel : public QSortFilterProxyModel {
     }
 
     bool filterAcceptsRow(int sourceRow, const QModelIndex& sourceParent) const {
-        if (sourceParent.isValid() && sourceModel()->data(sourceParent).toString().contains(filterRegExp()))
+        if (sourceParent.isValid() && sourceModel()->data(sourceParent).toString().contains(filterRegularExpression()))
             return true;
         QString data = sourceModel()->data(sourceModel()->index(sourceRow, 0, sourceParent)).toString();
-        bool keep = data.contains(filterRegExp());
+        bool keep = data.contains(filterRegularExpression());
 
         QModelIndex subIndex = sourceModel()->index(sourceRow, 0, sourceParent);
         if (subIndex.isValid()) {
@@ -242,7 +243,7 @@ ExprBrowser::~ExprBrowser() { delete treeModel; }
 ExprBrowser::ExprBrowser(QWidget* parent, ExprEditor* editor)
     : QWidget(parent), editor(editor), _context(""), _searchPath(""), _applyOnSelect(true) {
     QVBoxLayout* rootLayout = new QVBoxLayout;
-    rootLayout->setMargin(0);
+    rootLayout->setContentsMargins(0,0,0,0);
     this->setLayout(rootLayout);
     // search and clear widgets
     QHBoxLayout* searchAndClearLayout = new QHBoxLayout();
@@ -329,7 +330,7 @@ void ExprBrowser::clearSelection() { treeNew->clearSelection(); }
 void ExprBrowser::clearFilter() { exprFilter->clear(); }
 
 void ExprBrowser::filterChanged(const QString& str) {
-    proxyModel->setFilterRegExp(QRegExp(str));
+    proxyModel->setFilterRegularExpression(QRegularExpression(str));
     proxyModel->setFilterKeyColumn(0);
     if (str != "") {
         treeNew->expandAll();

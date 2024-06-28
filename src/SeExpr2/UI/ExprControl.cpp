@@ -167,7 +167,7 @@ ExprControl::ExprControl(int id, Editable* editable, bool showColorLink)
     : _id(id), _updating(false), _editable(editable) {
     hbox = new QHBoxLayout(this);
     hbox->setSpacing(2);
-    hbox->setMargin(0);
+    hbox->setContentsMargins(0,0,0,0);
 
     _colorLinkCB = new QCheckBox(this);
     _colorLinkCB->setFixedWidth(14);
@@ -283,7 +283,7 @@ VectorControl::VectorControl(int id, VectorEditable* editable)
     for (int i = 0; i < 3; i++) {
         QVBoxLayout* vbl = new QVBoxLayout();
         hbox->addLayout(vbl);
-        vbl->setMargin(0);
+        vbl->setContentsMargins(0,0,0,0);
         vbl->setSpacing(0);
 
         ExprLineEdit* edit = new ExprLineEdit(i, this);

@@ -262,24 +262,24 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     Q_UNUSED(iLabel);
     QHBoxLayout *mainLayout = new QHBoxLayout();
     mainLayout->setSpacing(2);
-    mainLayout->setMargin(4);
+    mainLayout->setContentsMargins(4,4,4,4);
 
     QWidget *edits = new QWidget;
     QVBoxLayout *editsLayout = new QVBoxLayout;
     editsLayout->setAlignment(Qt::AlignTop);
     editsLayout->setSpacing(0);
-    editsLayout->setMargin(0);
+    editsLayout->setContentsMargins(0,0,0,0);
     edits->setLayout(editsLayout);
 
     QWidget *selPos = new QWidget;
     QHBoxLayout *selPosLayout = new QHBoxLayout;
     selPosLayout->setSpacing(1);
-    selPosLayout->setMargin(1);
+    selPosLayout->setContentsMargins(1,1,1,1);
     selPos->setLayout(selPosLayout);
     _selPosEdit = new QLineEdit;
     QDoubleValidator *posValidator = new QDoubleValidator(0.0, 1.0, 6, _selPosEdit);
     _selPosEdit->setValidator(posValidator);
-    int editwidth = QFontMetrics(font()).width("9.999") + 8;
+    int editwidth = QFontMetrics(font()).horizontalAdvance("9.999") + 8;
     _selPosEdit->setFixedWidth(editwidth);
     _selPosEdit->setFixedHeight(20);
     selPosLayout->addStretch(50);
@@ -295,7 +295,7 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     QWidget *selVal = new QWidget;
     QBoxLayout *selValLayout = new QHBoxLayout;
     selValLayout->setSpacing(1);
-    selValLayout->setMargin(1);
+    selValLayout->setContentsMargins(1,1,1,1);
     selVal->setLayout(selValLayout);
     _selValEdit = new QLineEdit;
     QDoubleValidator *valValidator = new QDoubleValidator(0.0, 1.0, 6, _selValEdit);
@@ -331,7 +331,7 @@ ExprCurve::ExprCurve(QWidget *parent, QString pLabel, QString vLabel, QString iL
     curveFrame->setFrameShadow(QFrame::Sunken);
     curveFrame->setLineWidth(1);
     QHBoxLayout *curveFrameLayout = new QHBoxLayout;
-    curveFrameLayout->setMargin(0);
+    curveFrameLayout->setContentsMargins(0,0,0,0);
     CurveGraphicsView *curveView = new CurveGraphicsView;
     curveView->setFrameShape(QFrame::Panel);
     curveView->setFrameShadow(QFrame::Sunken);
