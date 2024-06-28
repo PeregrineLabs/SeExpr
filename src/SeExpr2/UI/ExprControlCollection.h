@@ -23,7 +23,6 @@
 #include <vector>
 
 #include <QTimer>
-#include <QRegExp>
 #include <QTextBrowser>
 #include <QPlainTextEdit>
 #include <QDialog>

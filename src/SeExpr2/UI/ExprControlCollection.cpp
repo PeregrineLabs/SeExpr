@@ -27,6 +27,7 @@
 #include <QDialogButtonBox>
 #include <QColorDialog>
 #include <QLabel>
+#include <QRegExp>
 #include "ExprEditor.h"
 #include "ExprHighlighter.h"
 #include "ExprCompletionModel.h"
