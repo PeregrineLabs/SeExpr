@@ -27,7 +27,6 @@
 #include <QPlainTextEdit>
 #include <QDialog>
 #include <QTimer>
-#include <QRegExp>
 #include <QLineEdit>
 #include <QCheckBox>
 #include <QSlider>
