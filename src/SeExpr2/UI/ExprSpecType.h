@@ -21,6 +21,7 @@
 #include <vector>
 #include <sstream>
 #include <SeExpr2/Curve.h>
+#include <algorithm>
 #include <cstdio>
 
 /// Mini parse tree node... Only represents literals, and lists of literals

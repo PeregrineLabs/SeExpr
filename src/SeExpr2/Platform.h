@@ -72,13 +72,13 @@
 
 // missing functions on Windows
 #ifdef WINDOWS
-#define snprintf sprintf_s
+//#define snprintf sprintf_s
 #define strtok_r strtok_s
 typedef __int64 FilePos;
 #define fseeko _fseeki64
 #define ftello _ftelli64
 
-inline double log2(double x) { return log(x) * 1.4426950408889634; }
+//inline double log2(double x) { return log(x) * 1.4426950408889634; }
 
 typedef unsigned int uint32_t;
 #define M_E (2.7182818284590452354)
