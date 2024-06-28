@@ -28,6 +28,7 @@
 #include <QScrollBar>
 #include <QToolTip>
 #include <QLabel>
+#include <QRegExp>
 
 #include "ExprShortEdit.h"
 #include "ExprDialog.h"
