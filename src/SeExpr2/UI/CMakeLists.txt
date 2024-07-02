@@ -25,6 +25,7 @@ if (Qt5_FOUND OR Qt6_FOUND)
 
    # BuildParserScanner(ExprSpecParserLex ExprSpecParser ExprSpec
    #         editor_parser_cpp ui)
+    set(editor_parser_cpp generated/ExprSpecParser.cpp generated/ExprSpecParserLex.cpp)
 
     set(EDITOR_MOC_HDRS ExprBrowser.h ExprColorCurve.h
             ExprColorSwatch.h ExprControlCollection.h
