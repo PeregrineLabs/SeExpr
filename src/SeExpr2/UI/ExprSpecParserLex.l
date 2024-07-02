@@ -31,11 +31,6 @@
 #    include <math.h>
 #endif
 
-// If c++11 don't use register designator, lex and yacc need to go...
-#if __cplusplus > 199711L
-#define register      // Deprecated in C++11.
-#endif  // #if __cplusplus > 199711L
-
 #include "ExprSpecType.h"
 
 #ifdef SEEXPR_WIN32
